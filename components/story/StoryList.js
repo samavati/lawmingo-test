@@ -1,18 +1,25 @@
-import Image from 'next/image'
-import style from './StoryItem.module.scss';
+import StoryItem from './StoryItem'
 
 const StoryList = () => {
     return (
-        <div className="d-flex flex-row">
-            <div className="d-flex flex-column justify-content-center align-items-center">
-                <Image
-                    src="/vercel.svg"
-                    alt="Picture of the author"
-                    className={style.avatar}
-                    width={50}
-                    height={50} />
-                    <span>kjnvjfk</span>
+        <div className="d-flex flex-row py-3 story-list">
+            <div className="d-flex flex-column justify-content-center align-items-center position-relative px-1">
+                <div className="add-story d-flex justify-content-center align-items-center"><i className="fas fa-plus"></i></div>
+                <span><strong><small>Your Story</small></strong></span>
             </div>
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
+            <StoryItem />
         </div>
     );
 };
