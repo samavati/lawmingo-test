@@ -4,7 +4,7 @@ import StoryList from "../components/story/StoryList";
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout title="All Chats">
       <div className="row">
         <StoryList />
       </div>
@@ -14,3 +14,6 @@ export default function Home() {
     </Layout>
   );
 }
+
+
+// dummy api app-id: 5fe305f7853604ae46f461d9
