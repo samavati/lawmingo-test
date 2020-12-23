@@ -1,36 +1,55 @@
-import { useRouter } from 'next/router'
-import Layout from "../../../components/layout"
+import { withRouter } from 'next/router'
+import React from 'react';
+import customAxios from './../../../shared/axios.instance';
+import Layout from "../../../components/layout";
 
-const Profile = () => {
-    const router = useRouter()
-    const { profile } = router.query
-    return (
-        <Layout title="Profile">
-            <div className="row">
-                <div className="main-section">
-                    <img src="/avatar-exemple.jpg" className="avatar big" />
-                    <p>
-                        mr. Heinz-Georg Fiedler
-                    </p>
-                    <p>
-                        Gender: Male
-                    </p>
-                    <p>
-                        Date Of Birth: Mar 13 1974
-                    </p>
-                    <p>
-                        Register Date: Mar 07 2020
-                    </p>
-                    <p>
-                        Email: heinz-georg.fiedler@example.com
-                    </p>
-                    <p>
-                        Phone: 0700-3090279
-                    </p>
+class Profile extends React.Component {
+    state = {
+        user: null
+    }
+
+    async componentDidMount() {
+        const res = await customAxios.get('/user/' + this.props.router.query.profile);
+        const data = await res.data;
+        this.setState({ user: data });
+    }
+
+    render() {
+        if (!this.state.user) {
+            return (
+                <Layout title="Profile">
+                    <div>Loading...</div>
+                </Layout>
+            )
+        }
+        return (
+            <Layout title="Profile">
+                <div className="row">
+                    <div className="main-section">
+                        <img src={this.state.user.picture} className="avatar big" />
+                        <p>
+                            {this.state.user.firstName + this.state.user.lastName}
+                        </p>
+                        <p>
+                            Gender: {this.state.user.gender}
+                        </p>
+                        <p>
+                            Date Of Birth: {this.state.user.dateOfBirth}
+                        </p>
+                        <p>
+                            Register Date: {this.state.user.registerDate}
+                        </p>
+                        <p>
+                            Email: {this.state.user.email}
+                        </p>
+                        <p>
+                            Phone: {this.state.user.phone}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </Layout>
-    );
+            </Layout>
+        );
+    }
 }
 
-export default Profile;
+export default withRouter(Profile);

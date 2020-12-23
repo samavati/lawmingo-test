@@ -50,3 +50,16 @@ a {
     text-decoration: none !important;
     color: inherit !important;
 }
+
+.btn-check:focus + .btn,
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.navigation {
+    a.active {
+        i {
+            color: #0bc4d9;
+        }
+    }
+}
