@@ -1,15 +1,15 @@
-const StoryItem = () => {
+const StoryItem = ({ user }) => {
     return (
         <div className="d-flex flex-column justify-content-center align-items-center px-1">
             <div className="position-relative">
                 <img
-                    src="/avatar-exemple.jpg"
-                    alt="Picture of the author"
+                    src={user.picture}
+                    alt={user.firstName}
                     className="avatar bordered" />
                 <div className="avatar-badge"></div>
             </div>
 
-            <span><strong><small>Ehsan</small></strong></span>
+            <span className="text-truncate"><strong><small>{user.firstName}</small></strong></span>
         </div>
     );
 }
